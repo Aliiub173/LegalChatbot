@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Legal Chatbot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 70%;
+            margin: auto;
+            margin-top: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .chat-box {
+            margin-top: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .user, .bot {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .user {
+            background-color: #e0f7fa;
+            text-align: right;
+        }
+        .bot {
+            background-color: #f1f8e9;
+        }
+        .bot ul {
+            padding-left: 20px;
+        }
+        .bot li {
+            margin-bottom: 6px;
+            line-height: 1.6;
+        }
+        form {
+            display: flex;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 16px;
+            background-color: #26a69a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00796b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pakistan Legal Chatbot</h1>
+        <div class="chat-box">
+            {% for msg in chat_history %}
+                <div class="{{ msg['role'] }}">
+                    {% autoescape false %}{{ msg['text'] }}{% endautoescape %}
+                </div>
+            {% endfor %}
+        </div>
+        <form method="POST">
+            <input type="text" name="user_input" placeholder="Ask a legal question..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
